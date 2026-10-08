@@ -1,0 +1,204 @@
+<!DOCTYPE html> <!-- Inizializzazione documento versione HTML5.  -->
+<html lang="it"> <!-- L'attributo lang="it" indica che il contenuto è in italiano. -->
+<head>
+    <meta charset="UTF-8">  <!-- Meta tag obbligatorio poichè specifica la codifica dei caratteri, in questo caso si utilizza UTF-8 , che supporta tutti i caratteri Unicode. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Meta tag per il responsive design, che imposta la larghezza della viewport a quella del dispositivo e lo zoom iniziale a 1. -->
+    <title>Soccer Players</title>  <!-- Impostazione del titolo visualizzato nella scheda del browser. -->
+    <style> 
+        /* Reset di base, in particolare, rimuove margini e padding predefiniti e imposta il box-sizing. */
+        * {
+            box-sizing: border-box; /* Inclusione del padding e border nella larghezza ed altezza totale. */
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Stile del corpo della pagina che presenta font personalizzato, sfondo chiaro e testo di colore scuro. */
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #f0f2f5;
+            color: #333;
+            line-height: 1.5;
+            padding: 20px;
+        }
+
+        /* Contenitore principale, che centra il contenuto e limita la larghezza massima. */
+        .container {
+            max-width: 900px;
+            margin: 0 auto; /* Centra orizzontalmente. */
+        }
+
+        /* Card, utilizzato per rappresentare l' aspetto di un riquadro bianco con ombra leggera e angoli arrotondati. */
+        .card {
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            padding: 24px;
+        }
+
+        /* Intestazione della card che presenta margine inferiore per separare dal resto. */
+        .title {
+            margin-bottom: 20px;
+        }
+
+        /* Titolo principale della pagina. */
+        .title h1 {
+            font-size: 1.8rem;
+            margin-bottom: 4px;
+            color: #1a1a1a;
+        }
+
+        /* Sottotitolo della pagina. */
+        .title p {
+            font-size: 1rem;
+            color: #666;
+        }
+
+        /* Bottone che presenta stile semplice e moderno. */
+        button {
+            background-color: #007bff;
+            color: #ffffff;
+            border: none;
+            border-radius: 4px;
+            padding: 10px 18px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        /* Effetto hover sul bottone. */
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Area di stato con testo più piccolo, colore grigio, margine verticale. */
+        #status {
+            margin: 12px 0;
+            font-size: 0.95rem;
+            color: #555;
+        }
+
+        /* Contenitore della tabella che permette lo scorrimento orizzontale su schermi piccoli. */
+        .table-container {
+            overflow-x: auto;
+        }
+
+        /* Tabella che occupa tutta la larghezza, bordi collassati. */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        /* Celle di intestazione e celle dati con padding e bordi. */
+        th, td {
+            padding: 10px 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        /* Intestazione con sfondo leggermente diverso e testo in grassetto. */
+        th {
+            background-color: #f8f9fa;
+            font-weight: 600;
+            color: #333;
+        }
+
+        /* Righe alternate con sfondo leggermente grigio per migliorare la leggibilità. */
+        tbody tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        /* Effetto hover sulle righe della tabella. */
+        tbody tr:hover {
+            background-color: #eef4ff;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container"> <!-- Contenitore principale chiamato container.  -->
+    <div class="card">     <!-- Raggruppamento del contenuto in un blocco visivo. -->
+        <div class="title">         <!-- Intestazione della card con titolo e sottotitolo. -->
+            <h1>Soccer Players</h1>
+            <p>Players List:</p>
+        </div>
+        <button id="loadButton">  <!-- Bottone che, se cliccato, chiama la funzione loadPlayers(). -->
+            Load Players
+        </button>
+        <div id="status">       <!-- Area di stato che mostra messaggi relativi al caricamento, errori o il numero di giocatori caricati. -->
+            Press button to load data!
+        </div>
+        <div class="table-container">  <!-- Contenitore della tabella chiamato table-container. -->
+            <table>   <!-- Tabella che mostrerà l'elenco dei giocatori. -->
+                <thead>   <!-- Intestazione della tabella con definizione delle colonne. -->
+                    <tr>
+                        <th>Name</th> <!-- Nome completo del calciatore. -->
+                        <th>N.</th>  <!-- Numero di maglia del calciatore. --> 
+                        <th>Age</th> <!-- Età del calciatore. -->
+                        <th>Role</th> <!-- Ruolo del calciatore a scelta tra: A, C, D, P . -->
+                        <th>Team</th> <!-- Squadra del calciatore. -->
+                    </tr>
+                </thead>
+                <tbody id="playersTable"> <!-- Corpo della tabella che verrà riempito dinamicamente via JavaScript. -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<script>
+// Funzione asincrona che carica i giocatori dal server, dichiarata async per poter usare "await" all'interno, che semplifica la gestione delle promesse restituite da fetch() e response.json()
+async function loadPlayers() {
+    // Recupero dei riferimenti agli elementi HTML tramite il loro id per poi essere salvati in costanti per evitare di cercarli più volte.
+    const status = document.getElementById('status'); 
+    const table = document.getElementById('playersTable');
+
+    status.textContent = 'Loading...'; // Aggiornamento il messaggio di stato per indicare all'utente che il caricamento è in corso.
+
+    try {
+        const response = await fetch('/players'); // Invio di una richiesta HTTP GET all'endpoint /players utilizzando Fetch Api. fetch() restituisce una Promise che, una volta completata, fornisce un oggetto Response contenente la risposta HTTP.
+
+
+        // Controllo dell'andamento della risposta HTTP, se compresa tra 200 e 299 andata a buon fine, altrimenti no e lancerà un errore che verrà catturato dal blocco catch
+        if (!response.ok) {
+            throw new Error(`HTTP ${response.status}`);
+        }
+
+
+        // Conversione del corpo della risposta da JSON a un array di oggetti JavaScript. 
+        const players = await response.json();
+        // Rimozione di eventuali righe precedenti dalla tabella, dove replaceChildren() è un metodo moderno che rimuove tutti i figli e ne aggiunge di nuovi e in questo caso, senza argomenti, rimuove tutti i figli esistenti.
+        table.replaceChildren();
+
+        // Iterazione su ogni giocatore ricevuto, dove ayer rappresenta il calciatore corrente.   
+        players.forEach(player => {  //arrow function che prende come parametro player 
+            const row = document.createElement('tr'); // Creazione di una nuova riga <tr>.
+
+            [player.fullname, player.n, player.age, player.rule, player.soccerteam]
+                .forEach(value => {
+                    const cell = document.createElement('td'); // Creazione di una nuova cella <td>
+                    cell.textContent = value; // Inserimento del valore come testo all'interno della cella.
+                    row.appendChild(cell); // Aggiunta della cella
+                });
+
+            table.appendChild(row); // Aggiunta della riga completata al corpo della tabella.
+        });
+
+        status.textContent = `Loaded ${players.length} players.`;
+    } catch (error) {
+        // In caso di errore catturato, quest'ultimo viene mostrato in console e in interfaccia utente.
+        console.error(error);
+        status.textContent = `Error: ${error.message}`;
+    }
+}
+
+// Collegament dell'evento click sul bottone alla funzione loadPlayers, quindi la funzione può essere eseguita cliccando il bottone.
+document.getElementById('loadButton').addEventListener('click', loadPlayers);
+loadPlayers(); // Esecuzione automatica della funzione loadPlayers() al caricamento della pagina.
+</script>
+
+</body>
+
+</html>

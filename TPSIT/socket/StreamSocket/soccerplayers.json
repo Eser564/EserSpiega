@@ -1,0 +1,72 @@
+[
+    {
+        "fullname": "Kvicha Kvaratshkelia",
+        "n": 77,
+        "age": 25,
+        "rule": "P",
+        "soccerteam": "Paris Saint-Germain"
+    },
+    {
+        "fullname": "Virgil van Dijk",
+        "n": 4,
+        "age": 35,
+        "rule": "D",
+        "soccerteam": "Liverpool"
+    },
+    {
+        "fullname": "Scott McTominay",
+        "n": 8,
+        "age": 27,
+        "rule": "C",
+        "soccerteam": "SSC Napoli"
+    },
+    {
+        "fullname": "Alphonso Davies",
+        "n": 19,
+        "age": 25,
+        "rule": "D",
+        "soccerteam": "Bayern Monaco"
+    },
+    {
+        "fullname": "Jude Bellingham",
+        "n": 5,
+        "age": 23,
+        "rule": "C",
+        "soccerteam": "Real Madrid"
+    },
+    {
+        "fullname": "Nicolò Barella",
+        "n": 23,
+        "age": 29,
+        "rule": "C",
+        "soccerteam": "Inter"
+    },
+    {
+        "fullname": "Rodri",
+        "n": 16,
+        "age": 30,
+        "rule": "C",
+        "soccerteam": "Manchester City"
+    },
+    {
+        "fullname": "Kylian Mbappé",
+        "n": 9,
+        "age": 27,
+        "rule": "A",
+        "soccerteam": "Real Madrid"
+    },
+    {
+        "fullname": "Erling Haaland",
+        "n": 9,
+        "age": 26,
+        "rule": "A",
+        "soccerteam": "Manchester City"
+    },
+    {
+        "fullname": "Harry Kane",
+        "n": 9,
+        "age": 33,
+        "rule": "A",
+        "soccerteam": "Bayern Monaco"
+    }
+]
