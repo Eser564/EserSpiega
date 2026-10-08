@@ -1,8 +1,4 @@
-Certo! Ecco il contenuto pronto da salvare come file `.md` e caricare su GitHub.
-
-Suggerimento: salvalo come `RIPASSO_TPSIT_SOCKET_PYTHON.md`.
-
-````markdown
+````
 # RIPASSO TPSIT — SOCKET PYTHON
 
 ## TCP/STREAM, UDP/DATAGRAM e SERVER HTTP
