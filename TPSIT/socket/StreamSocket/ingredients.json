@@ -1,0 +1,236 @@
+[
+    {
+        "id": 1,
+        "name": "Polvere di Stelle",
+        "description": "Frammenti luminosi caduti dal cielo notturno, usati per infondere pura energia cosmica.",
+        "terra": 1,
+        "acqua": 2,
+        "fuoco": 3,
+        "aria": 5
+    },
+    {
+        "id": 2,
+        "name": "Radice di Mandragora",
+        "description": "Una radice antropomorfa che cresce nei terreni più oscuri, nota per il suo urlo letale.",
+        "terra": 5,
+        "acqua": 2,
+        "fuoco": 0,
+        "aria": 1
+    },
+    {
+        "id": 3,
+        "name": "Lacrima di Fenice",
+        "description": "Un liquido caldissimo e curativo, capace di rigenerare qualsiasi ferita.",
+        "terra": 0,
+        "acqua": 4,
+        "fuoco": 5,
+        "aria": 2
+    },
+    {
+        "id": 4,
+        "name": "Sabbia del Tempo",
+        "description": "Granelli dorati provenienti da deserti dimenticati, capaci di alterare la percezione cronologica.",
+        "terra": 4,
+        "acqua": 1,
+        "fuoco": 2,
+        "aria": 3
+    },
+    {
+        "id": 5,
+        "name": "Ossidiana Vulcanica",
+        "description": "Vetro vulcanico nero come la notte, infuso del calore del nucleo terrestre.",
+        "terra": 4,
+        "acqua": 0,
+        "fuoco": 5,
+        "aria": 1
+    },
+    {
+        "id": 6,
+        "name": "Essenza di Nefele",
+        "description": "Vapore condensato prelevato dalle nuvole più alte durante un temporale estivo.",
+        "terra": 0,
+        "acqua": 4,
+        "fuoco": 1,
+        "aria": 5
+    },
+    {
+        "id": 7,
+        "name": "Linfa d'Antico",
+        "description": "Fluido vitale estratto dal cuore degli alberi millenari della foresta sacra.",
+        "terra": 5,
+        "acqua": 3,
+        "fuoco": 1,
+        "aria": 2
+    },
+    {
+        "id": 8,
+        "name": "Scaglia di Leviatano",
+        "description": "Una scaglia coriacea e idrodinamica proveniente dalle creature degli abissi oceanici.",
+        "terra": 2,
+        "acqua": 5,
+        "fuoco": 0,
+        "aria": 1
+    },
+    {
+        "id": 9,
+        "name": "Piuma di Ippogrifo",
+        "description": "Una piuma leggera ma incredibilmente resistente, eccellente per incantesimi di levitazione.",
+        "terra": 2,
+        "acqua": 1,
+        "fuoco": 2,
+        "aria": 5
+    },
+    {
+        "id": 10,
+        "name": "Fiamma Fatua",
+        "description": "Un fuoco freddo di colore azzurrognolo che si sprigiona nei luoghi intrisi di magia spirituale.",
+        "terra": 0,
+        "acqua": 2,
+        "fuoco": 5,
+        "aria": 3
+    },
+    {
+        "id": 11,
+        "name": "Acqua Lunare",
+        "description": "Acqua di sorgente purissima esposta alla luce della luna piena per un'intera notte.",
+        "terra": 1,
+        "acqua": 5,
+        "fuoco": 0,
+        "aria": 3
+    },
+    {
+        "id": 12,
+        "name": "Petalo di Rosa di Fuoco",
+        "description": "Un petalo cremisi che cresce solo vicino ai flussi di lava, caldo al tatto.",
+        "terra": 3,
+        "acqua": 0,
+        "fuoco": 5,
+        "aria": 2
+    },
+    {
+        "id": 13,
+        "name": "Artiglio di Golem",
+        "description": "Un frammento di roccia animata, infuso di una forza gravitazionale immensa.",
+        "terra": 5,
+        "acqua": 1,
+        "fuoco": 2,
+        "aria": 0
+    },
+    {
+        "id": 14,
+        "name": "Soffio di Zefiro",
+        "description": "Una brezza incapsulata in una fiala di vetro, catturata durante l'equinozio di primavera.",
+        "terra": 1,
+        "acqua": 2,
+        "fuoco": 1,
+        "aria": 5
+    },
+    {
+        "id": 15,
+        "name": "Corallo di Sangue",
+        "description": "Un corallo raro che cresce nelle profondità marine dove l'acqua è più calda.",
+        "terra": 3,
+        "acqua": 5,
+        "fuoco": 2,
+        "aria": 0
+    },
+	{
+        "id": 16,
+        "name": "Verga di Blaze",
+        "description": "Verga del potente mob Blaze.",
+        "terra": 0,
+        "acqua": 0,
+        "fuoco": 5,
+        "aria": 1
+    },	
+	{
+        "id": 17,
+        "name": "Occhio di Enderman",
+        "description": "Occhio del mob alto e magro chiamato Enderman.",
+        "terra": 3,
+        "acqua": 1,
+        "fuoco": 5,
+        "aria": 3
+    },
+	{
+        "id": 18,
+        "name": "Soffio di Herobrine",
+        "description": "Una brezza di alito di Herobrine.",
+        "terra": 0,
+        "acqua": 0,
+        "fuoco": 5,
+        "aria": 5
+    },
+        {
+        "id": 19,
+        "name": "Perla dell'End",
+        "description": "Una perla intrisa di energia dimensionale, utilizzata per piegare lo spazio e teletrasportarsi tra luoghi lontani.",
+        "terra": 1,
+        "acqua": 0,
+        "fuoco": 3,
+        "aria": 5
+    },
+    {
+        "id": 20,
+        "name": "Cuore di Drago",
+        "description": "Un nucleo incandescente che conserva la potenza ancestrale dei draghi e alimenta gli incantesimi di distruzione.",
+        "terra": 2,
+        "acqua": 0,
+        "fuoco": 5,
+        "aria": 3
+    },
+    {
+        "id": 21,
+        "name": "Cristallo del Nether",
+        "description": "Un cristallo rosso e pulsante proveniente dalle profondità del Nether, capace di assorbire e amplificare il calore magico.",
+        "terra": 3,
+        "acqua": 0,
+        "fuoco": 5,
+        "aria": 1
+    },
+    {
+        "id": 22,
+        "name": "Fiore degli Abissi",
+        "description": "Un fiore bioluminescente che cresce nelle fosse oceaniche più profonde, custode di antichi poteri acquatici.",
+        "terra": 2,
+        "acqua": 5,
+        "fuoco": 0,
+        "aria": 2
+    },
+    {
+        "id": 23,
+        "name": "Scheggia di Ghiaccio Eterno",
+        "description": "Un frammento di ghiaccio che non si scioglie mai, capace di congelare persino le fiamme magiche più potenti.",
+        "terra": 1,
+        "acqua": 5,
+        "fuoco": 0,
+        "aria": 4
+    },
+    {
+        "id": 24,
+        "name": "Polvere di Redstone",
+        "description": "Una polvere minerale carica di energia arcana, impiegata per attivare meccanismi incantati e alimentare circuiti magici.",
+        "terra": 4,
+        "acqua": 0,
+        "fuoco": 4,
+        "aria": 2
+    },
+    {
+        "id": 25,
+        "name": "Piuma della Fenice Celeste",
+        "description": "Una piuma dorata caduta da una fenice leggendaria, capace di evocare venti luminosi e rinnovare l'energia vitale.",
+        "terra": 0,
+        "acqua": 2,
+        "fuoco": 5,
+        "aria": 5
+    },
+    {
+        "id": 26,
+        "name": "Stella del Nether",
+        "description": "Una stella ottenuta dopo aver sconfitto il Wither.",
+        "terra": 0,
+        "acqua": 2,
+        "fuoco": 5,
+        "aria": 5
+    }
+]

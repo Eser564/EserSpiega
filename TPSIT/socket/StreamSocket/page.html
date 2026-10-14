@@ -1,0 +1,150 @@
+<!DOCTYPE html> <!-- Inizializzazione documento versione HTML5.  -->
+<html lang="it"> <!-- L'attributo lang="it" indica che il contenuto è in italiano. -->
+<head>
+    <meta charset="UTF-8">  <!-- Meta tag obbligatorio poichè specifica la codifica dei caratteri, in questo caso si utilizza UTF-8 , che supporta tutti i caratteri Unicode. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Meta tag per il responsive design, che imposta la larghezza della viewport a quella del dispositivo e lo zoom iniziale a 1. -->
+    <title>Soccer Players</title>  <!-- Impostazione del titolo visualizzato nella scheda del browser. -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-B/GM4XqrwHnWXNOWMbloTmrYXZg10cakYGmpfsR/bbzQ6JAJI4ihuyADKLnBgrCe" crossorigin="anonymous">
+    <script type="module" src="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-1a/pXj49ZQ1aHEmrJ+gMw1otqoVsYwlEnlD8mIfY2TV03r20Y0CN7uqx1tQogjPL" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+<div class="bg-light py-5"> 
+    <div class="container">
+    <div class="text-center mb-5">
+        <h1 class="display-4 fw-bold text-primary">Formule Magiche</h1>
+        <p class="lead text-muted">Ecco gli ingredienti: </p>
+        
+        <button id="loadButton" class="btn btn-primary btn-lg shadow-sm mt-3">
+            Carica Ingredienti
+        </button>
+        
+        <div id="status" class="alert alert-info d-inline-block mt-3 px-4 py-2 rounded-pill">
+            Premi il pulsante per infondere la magia!
+        </div>
+    </div>
+
+    <div id="ingredientsContainer" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+    </div>
+</div>
+
+
+<script>
+async function loadIngredients() {
+    const status = document.getElementById('status'); 
+    const iC = document.getElementById('ingredientsContainer');
+
+    status.textContent = 'Loading...'; // Aggiornamento il messaggio di stato per indicare all'utente che il caricamento è in corso.
+
+    try {
+        const response = await fetch('/ingredients'); // Invio di una richiesta HTTP GET all'endpoint /players utilizzando Fetch Api. fetch() restituisce una Promise che, una volta completata, fornisce un oggetto Response contenente la risposta HTTP.
+
+
+        // Controllo dell'andamento della risposta HTTP, se compresa tra 200 e 299 andata a buon fine, altrimenti no e lancerà un errore che verrà catturato dal blocco catch
+        if (!response.ok) {
+            throw new Error(`HTTP ${response.status}`);
+        }
+
+
+        // Conversione del corpo della risposta da JSON a un array di oggetti JavaScript. 
+        const ingredients = await response.json();
+        // Rimozione di eventuali righe precedenti dalla tabella, dove replaceChildren() è un metodo moderno che rimuove tutti i figli e ne aggiunge di nuovi e in questo caso, senza argomenti, rimuove tutti i figli esistenti.
+        iC.replaceChildren();
+		
+		if (!Array.isArray(ingredients) || ingredients.length === 0) {
+			status.className = 'alert alert-warning';
+			status.textContent = 'Il grimorio è vuoto: nessun ingrediente disponibile.';
+			return;
+		}
+
+        ingredients.forEach(ingredients => {  
+            const column = document.createElement('div');
+            column.className = 'col';
+
+            const terraP = (ingredients.terra / 5) * 100;
+            const acquaP = (ingredients.acqua / 5) * 100;
+            const fuocoP = (ingredients.fuoco / 5) * 100;
+            const ariaP = (ingredients.aria / 5) * 100;
+
+            column.innerHTML = `
+                <div class="card h-100 shadow-sm border-0">
+				        <img
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4sbSQfDpysDy8AlYxM7OE9w6BxajN3uzDEoSOdBvEVw&s"
+            class="card-img-top"
+            alt="Immagine di ${ingredients.name}"
+            style="height: 200px; object-fit: cover;">
+                    <div class="card-body d-flex flex-column">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <h5 class="card-title fw-bold text-dark mb-0">${ingredients.name}</h5>
+                            <span class="badge bg-secondary rounded-pill">ID: ${ingredients.id}</span>
+                        </div>
+                        <p class="card-text text-muted small flex-grow-1">${ingredients.description}</p>
+                        
+                        <div class="mt-4 pt-3 border-top">
+                            <div class="mb-2">
+                                <div class="d-flex justify-content-between small mb-1">
+                                    <span class="fw-semibold text-success">🌱 Terra</span>
+                                    <span>${ingredients.terra}/5</span>
+                                </div>
+                                <div class="progress" style="height: 6px;">
+                                    <div class="progress-bar bg-success" role="progressbar" style="width: ${terraP}%" aria-valuenow="${ingredients.terra}" aria-valuemin="0" aria-valuemax="5"></div>
+                                </div>
+                            </div>
+
+                            <div class="mb-2">
+                                <div class="d-flex justify-content-between small mb-1">
+                                    <span class="fw-semibold text-info">💧 Acqua</span>
+                                    <span>${ingredients.acqua}/5</span>
+                                </div>
+                                <div class="progress" style="height: 6px;">
+                                    <div class="progress-bar bg-info" role="progressbar" style="width: ${acquaP}%" aria-valuenow="${ingredients.acqua}" aria-valuemin="0" aria-valuemax="5"></div>
+                                </div>
+                            </div>
+
+                            <div class="mb-2">
+                                <div class="d-flex justify-content-between small mb-1">
+                                    <span class="fw-semibold text-danger">🔥 Fuoco</span>
+                                    <span>${ingredients.fuoco}/5</span>
+                                </div>
+                                <div class="progress" style="height: 6px;">
+                                    <div class="progress-bar bg-danger" role="progressbar" style="width: ${fuocoP}%" aria-valuenow="${ingredients.fuoco}" aria-valuemin="0" aria-valuemax="5"></div>
+                                </div>
+                            </div>
+
+                            <div class="mb-0">
+                                <div class="d-flex justify-content-between small mb-1">
+                                    <span class="fw-semibold text-warning text-dark">💨 Aria</span>
+                                    <span>${ingredients.aria}/5</span>
+                                </div>
+                                <div class="progress" style="height: 6px;">
+                                    <div class="progress-bar bg-warning" role="progressbar" style="width: ${ariaP}%" aria-valuenow="${ingredients.aria}" aria-valuemin="0" aria-valuemax="5"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            iC.appendChild(column);
+
+
+        });
+
+        status.className = 'alert alert-success d-inline-block mt-3 px-4 py-2 rounded-pill';
+        status.textContent = `Loaded ${ingredients.length} elements.`;
+    } catch (error) {
+        // In caso di errore catturato, quest'ultimo viene mostrato in console e in interfaccia utente.
+        console.error(error);
+        status.className = 'alert alert-danger d-inline-block mt-3 px-4 py-2 rounded-pill'
+        status.textContent = `Error: ${error.message}`;
+    }
+}
+
+// Collegament dell'evento click sul bottone alla funzione loadPlayers, quindi la funzione può essere eseguita cliccando il bottone.
+document.getElementById('loadButton').addEventListener('click', loadIngredients);
+loadIngredients(); // Esecuzione automatica della funzione loadPlayers() al caricamento della pagina.
+</script>
+
+</body>
+
+</html>
